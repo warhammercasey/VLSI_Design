@@ -1,0 +1,115 @@
+*** SPICE deck for cell inst_reg_sim{sch} from library instruction_register
+*** Created on Fri Nov 07, 2025 11:32:51
+*** Last revised on Wed Nov 12, 2025 11:02:53
+*** Written on Wed Nov 12, 2025 11:29:18 by Electric VLSI Design System, version 9.08
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+*** SUBCIRCUIT instruction_register__buftri_c_1x FROM CELL buftri_c_1x{sch}
+.SUBCKT instruction_register__buftri_c_1x d en y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 net@3 net@6 gnd gnd N_50n L=0.6U W=4.2U
+Mnmos@1 y en net@3 gnd N_50n L=0.6U W=4.2U
+Mnmos@2 net@54 en gnd gnd N_50n L=0.6U W=1.8U
+Mnmos@3 net@6 d gnd gnd N_50n L=0.6U W=1.8U
+Mpmos@0 net@1 net@54 y vdd P_50n L=0.6U W=6U
+Mpmos@1 vdd net@6 net@1 vdd P_50n L=0.6U W=6U
+Mpmos@2 vdd en net@54 vdd P_50n L=0.6U W=2.7U
+Mpmos@3 vdd d net@6 vdd P_50n L=0.6U W=2.7U
+.ENDS instruction_register__buftri_c_1x
+
+*** SUBCIRCUIT instruction_register__flopenr_c_1x FROM CELL flopenr_c_1x{sch}
+.SUBCKT instruction_register__flopenr_c_1x d en ph1 ph2 q resetb
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@2 masterb ph2buf masterinb gnd N_50n L=0.6U W=1.8U
+Mnmos@3 master masterb gnd gnd N_50n L=0.6U W=1.8U
+Mnmos@4 slave ph1buf master gnd N_50n L=0.6U W=1.8U
+Mnmos@5 masterb ph2b n6 gnd N_50n L=0.6U W=1.2U
+Mnmos@6 n6 master gnd gnd N_50n L=0.6U W=1.2U
+Mnmos@7 n8 slaveb gnd gnd N_50n L=0.6U W=1.2U
+Mnmos@8 slaveb slave gnd gnd N_50n L=0.6U W=1.8U
+Mnmos@10 slave ph1b n8 gnd N_50n L=0.6U W=1.2U
+Mnmos@11 q slaveb gnd gnd N_50n L=0.6U W=2.1U
+Mnmos@16 n2 en n1 gnd N_50n L=0.6U W=5.4U
+Mnmos@17 n1 resetb gnd gnd N_50n L=0.6U W=7.2U
+Mnmos@18 n1 enb n3 gnd N_50n L=0.6U W=1.8U
+Mnmos@19 masterinb d n2 gnd N_50n L=0.6U W=1.8U
+Mnmos@20 n3 slave masterinb gnd N_50n L=0.6U W=1.8U
+Mnmos@21 ph1b ph1 gnd gnd N_50n L=0.6U W=1.8U
+Mnmos@22 ph2b ph2 gnd gnd N_50n L=0.6U W=1.8U
+Mnmos@23 enb en gnd gnd N_50n L=0.6U W=1.8U
+Mnmos@24 ph1buf ph1b gnd gnd N_50n L=0.6U W=1.8U
+Mnmos@25 ph2buf ph2b gnd gnd N_50n L=0.6U W=1.8U
+Mpmos@2 masterinb ph2b masterb vdd P_50n L=0.6U W=1.8U
+Mpmos@3 vdd masterb master vdd P_50n L=0.6U W=2.7U
+Mpmos@4 master ph1b slave vdd P_50n L=0.6U W=1.8U
+Mpmos@5 n7 ph2buf masterb vdd P_50n L=0.6U W=1.2U
+Mpmos@6 vdd master n7 vdd P_50n L=0.6U W=1.2U
+Mpmos@7 vdd slaveb n9 vdd P_50n L=0.6U W=1.2U
+Mpmos@8 vdd slave slaveb vdd P_50n L=0.6U W=2.7U
+Mpmos@10 n9 ph1buf slave vdd P_50n L=0.6U W=1.2U
+Mpmos@11 vdd slaveb q vdd P_50n L=0.6U W=3U
+Mpmos@16 n4 d masterinb vdd P_50n L=0.6U W=3.6U
+Mpmos@17 vdd enb n4 vdd P_50n L=0.6U W=3.6U
+Mpmos@18 vdd resetb masterinb vdd P_50n L=0.6U W=1.8U
+Mpmos@19 masterinb slave n5 vdd P_50n L=0.6U W=1.8U
+Mpmos@20 n5 en vdd vdd P_50n L=0.6U W=1.8U
+Mpmos@21 vdd ph1 ph1b vdd P_50n L=0.6U W=2.7U
+Mpmos@22 vdd ph2 ph2b vdd P_50n L=0.6U W=2.7U
+Mpmos@23 vdd en enb vdd P_50n L=0.6U W=2.7U
+Mpmos@24 vdd ph1b ph1buf vdd P_50n L=0.6U W=2.7U
+Mpmos@25 vdd ph2b ph2buf vdd P_50n L=0.6U W=2.7U
+.ENDS instruction_register__flopenr_c_1x
+
+*** SUBCIRCUIT instruction_register__inv_1x FROM CELL inv_1x{sch}
+.SUBCKT instruction_register__inv_1x a y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a gnd gnd N_50n L=0.6U W=2.1U
+Mpmos@0 vdd a y vdd P_50n L=0.6U W=3U
+.ENDS instruction_register__inv_1x
+
+*** SUBCIRCUIT instruction_register__instruction_register FROM CELL instruction_register{sch}
+.SUBCKT instruction_register__instruction_register clear data[0] data[1] data[2] data[3] EN IB[0] IB[1] IB[2] IB[3] instr[0] instr[1] instr[2] instr[3] latch ph1 toinstr[0] toinstr[1] toinstr[2] toinstr[3]
+** GLOBAL gnd
+** GLOBAL vdd
+Xbuftri_c@0 net@217 EN IB[0] instruction_register__buftri_c_1x
+Xbuftri_c@1 net@220 EN IB[1] instruction_register__buftri_c_1x
+Xbuftri_c@2 net@223 EN IB[2] instruction_register__buftri_c_1x
+Xbuftri_c@3 net@226 EN IB[3] instruction_register__buftri_c_1x
+Xflopenr_@0 instr[0] latch ph1 net@119 toinstr[0] net@146 instruction_register__flopenr_c_1x
+Xflopenr_@1 instr[1] latch ph1 net@119 toinstr[1] net@146 instruction_register__flopenr_c_1x
+Xflopenr_@2 instr[2] latch ph1 net@119 toinstr[2] net@146 instruction_register__flopenr_c_1x
+Xflopenr_@3 instr[3] latch ph1 net@119 toinstr[3] net@146 instruction_register__flopenr_c_1x
+Xflopenr_@4 data[0] latch ph1 net@119 net@217 net@146 instruction_register__flopenr_c_1x
+Xflopenr_@5 data[1] latch ph1 net@119 net@220 net@146 instruction_register__flopenr_c_1x
+Xflopenr_@6 data[2] latch ph1 net@119 net@223 net@146 instruction_register__flopenr_c_1x
+Xflopenr_@7 data[3] latch ph1 net@119 net@226 net@146 instruction_register__flopenr_c_1x
+Xinv_1x@0 clear net@146 instruction_register__inv_1x
+Xinv_1x@1 ph1 net@119 instruction_register__inv_1x
+.ENDS instruction_register__instruction_register
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: inst_reg_sim{sch}
+Xinstruct@0 clr_instr data[0] data[1] data[2] data[3] EN IB[0] IB[1] IB[2] IB[3] instr[0] instr[1] instr[2] instr[3] latch ph1 toinstr[0] toinstr[1] toinstr[2] toinstr[3] instruction_register__instruction_register
+
+* Spice Code nodes in cell cell 'inst_reg_sim{sch}'
+vdd vdd 0 DC 1
+Vph1 ph1 0 pulse(0 1 0 10n 10n 500n 1u)
+Vclr clr_instr 0 pulse(0 1 0 1p 1p 1u 100u 2)
+Vlatch latch 0 pulse(0 1 0 1p 1p 72u 160u)
+Ven EN 0 pulse(0 1 0 1p 1p 160u 240u)
+.tran 0 240u
+.include cmosedu_models.txt
+Vinstr0 instr[0] 0 pulse(0 1 250n 1p 1p 5u 10u)
+Vinstr1 instr[1] 0 pulse(0 1 250n 1p 1p 10u 20u)
+Vinstr2 instr[2] 0 pulse(0 1 250n 1p 1p 20u 40u)
+Vinstr3 instr[3] 0 pulse(0 1 250n 1p 1p 40u 80u)
+Vdat0 data[0] 0 pulse(0 1 250n 1p 1p 5u 10u)
+Vdat1 data[1] 0 pulse(0 1 250n 1p 1p 10u 20u)
+Vdat2 data[2] 0 pulse(0 1 250n 1p 1p 20u 40u)
+Vdat3 data[3] 0 pulse(0 1 250n 1p 1p 40u 80u)
+.END
